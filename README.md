@@ -1,4 +1,5 @@
-Line Alphat JS
+Line Etot JS
+`Version : 0.2.2`
 
 # require node >= v8.x.x
 check your nodejs version
@@ -6,12 +7,29 @@ check your nodejs version
 [upgrade nodejs](https://google.com/)
 
 
+Line Etot JS Update?
+------
+- [Link](https://gitlab.com/teamanubot/LineEtotJS.git)
+
 How to run ?
 ------
-- `git clone https://github.com/alfathdirk/LineAlphatJS.git`
-- `cd LineAlphatJS && npm install`
+- `git clone https://github.com/teamanubot/LineEtotJS.git`
+- `cd LineEtotJS && npm install`
 - `npm start`
 
+New
+-------
+- Ban
+- Unban
+- Banlist
+- Fitur Kerang Ajaib
+- Penghapusan Kickall
+
+Note
+-------
+- Jangan Perjual Belikan Script Ini!
+- Ini Alphat Lama Tapi Di Upgrade
+- Gunakan Script Ini Dengan Bijak!
 
 Still work :construction_worker:
 ----
@@ -21,4 +39,4 @@ Still work :construction_worker:
 
 Author
 ------
-[@alfathdirk](https://instagram.com/alfathdirk)
+[@rivaimunte](http://line.me/ti/p/~kobe2k17)

@@ -1,7 +1,7 @@
 {
-  "name": "linealphatjs",
-  "version": "0.2.1",
-  "description": "LineAlphat JS",
+  "name": "linenetnotjs",
+  "version": "0.2.2",
+  "description": "Line Etot JS",
   "main": "./library/main.js",
   "scripts": {
     "start": "npm run bot",
@@ -9,11 +9,11 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/alfathdirk/LineAlphatJS.git"
+    "url": "https://github.com/teamanubot/LineEtotJS.git"
   },
   "author": {
-    "name": "alfathdirk",
-    "email": "alfathdirk@gmail.com"
+    "name": "rivaimunte",
+    "email": "rivaimunthe02@gmail.com"
   },
   "license": "MIT",
   "devDependencies": {
