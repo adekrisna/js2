@@ -7,13 +7,9 @@ check your nodejs version
 [upgrade nodejs](https://google.com/)
 
 
-Line Etot JS Update?
-------
-- [Link](https://gitlab.com/teamanubot/LineEtotJS.git)
-
 How to run ?
 ------
-- `git clone https://github.com/teamanubot/LineEtotJS.git`
+- `git clone 
 - `cd LineEtotJS && npm install`
 - `npm start`
 
@@ -39,4 +35,5 @@ Still work :construction_worker:
 
 Author
 ------
-[@rivaimunte](http://line.me/ti/p/~kobe2k17)
+Deploy to:
+Deploy to Heroku
