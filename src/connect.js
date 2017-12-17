@@ -6,35 +6,35 @@ class LineConnect extends LineAPI {
     super();
 
     if (typeof options !== 'undefined') {
-      this.authToken = options.authToken;
-      this.certificate = options.certificate;
-      this.config.Headers['X-Line-Access'] = options.authToken;
+      this.channelAccessToken = options.channelAccessToken;
+      this.channelSecret = options.channelSecret;
+      this.config.Headers['X-Line-Access'] = options.channelAccessToken;
     }
   }
   
   getQrFirst() {
     return new Promise((resolve,reject) => {
       this._qrCodeLogin().then(async (res) => {
-        this.authToken = res.authToken;
-        this.certificate = res.certificate;
-        console.info(`[*] Token: ${this.authToken}`);
-        console.info(`[*] Certificate: ${res.certificate}\n`);
+        this.channelAccessToken = res.channelAccessToken;
+        this.channelSecret = res.channelSecret;
+        console.info(`[*] Token: ${this.channelAccessToken}`);
+        console.info(`[*] channelSecret: ${res.channelSecret}\n`);
         let { mid, displayName } = await this._client.getProfile();
         console.info(`[*] mid: ${mid}\n`);
         console.info(`[*] Name: ${displayName}\n`);
         console.info(`NOTE: Dont forget , put your mid and admin on variable 'myBot' in main.js \n`);
         console.info(`Regrads Alfathdirk and thx for TCR Team \n`);
         console.info(`=======BOT RUNNING======\n`);
-        await this._tokenLogin(this.authToken, this.certificate);
+        await this._tokenLogin(this.channelAccessToken, this.channelSecret);
         resolve();
       });
     });
   }
 
   async startx () {
-    if (typeof this.authToken != 'undefined'){
-      await this._tokenLogin(this.authToken, this.certificate);
-      this._client.removeAllMessages(); //Fix Chat Spam When Bot Started (This bug only appears when u are login using authToken)
+    if (typeof this.channelAccessToken != 'undefined'){
+      await this._tokenLogin(this.channelAccessToken, this.channelSecret);
+      this._client.removeAllMessages(); //Fix Chat Spam When Bot Started (This bug only appears when u are login using channelAccessToken)
       return this.longpoll();
     } else {
       return new Promise((resolve, reject) => {

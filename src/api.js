@@ -43,10 +43,10 @@ class LineAPI {
     
   }
 
-  _tokenLogin(authToken, certificate) {
-    this.config.Headers['X-Line-Access'] = authToken;
+  _tokenLogin(channelAccessToken, channelSecret) {
+    this.config.Headers['X-Line-Access'] = channelAccessToken;
     this.setTHttpClient();
-    return Promise.resolve({ authToken, certificate });
+    return Promise.resolve({ channelAccessToken, channelSecret });
   }
 
   _qrCodeLogin() {
@@ -63,12 +63,12 @@ class LineAPI {
           .timeout(120000)
           .end(async (res) => {
             const verifiedQr = res.body.result.verifier;
-            const { authToken, certificate } =
+            const { channelAccessToken, channelSecret } =
               await this._client.loginWithVerifierForCerificate(verifiedQr);
-            this.options.headers['X-Line-Access'] = authToken;
+            this.options.headers['X-Line-Access'] = channelAccessToken;
             this.options.path = this.config.LINE_COMMAND_PATH;
             this.setTHttpClient(this.options);
-            resolve({ authToken, certificate });
+            resolve({ channelAccessToken, channelSecret });
           });
       });
     });
@@ -83,7 +83,7 @@ class LineAPI {
         this._client.getRSAKeyInfo(this.provider, (key, credentials) => {
           const rsaCrypto = pinVerifier.getRSACrypto(credentials);
           try {
-            this._client.loginWithIdentityCredentialForCertificate(
+            this._client.loginWithIdentityCredentialForchannelSecret(
               this.provider, rsaCrypto.keyname, rsaCrypto.credentials,
               true, this.config.ip, 'purple-line', '',
               (err, result) => {
@@ -114,11 +114,11 @@ class LineAPI {
   }
 
   _loginWithVerifier() {
-    return this.getJson(this.config.LINE_CERTIFICATE_URL)
+    return this.getJson(this.config.LINE_channelSecret_URL)
     .then(
       (json) =>
-        this._client.loginWithVerifierForCertificate(json.result.verifier)
-      , (err) => console.log(`LoginWithVerifierForCertificate Error: ${err}`)
+        this._client.loginWithVerifierForchannelSecret(json.result.verifier)
+      , (err) => console.log(`LoginWithVerifierForchannelSecret Error: ${err}`)
     );
   }
 
@@ -133,10 +133,10 @@ class LineAPI {
   }
 
   _checkLoginResultType(type, result) {
-    this.config.Headers['X-Line-Access'] = result.authToken || result.verifier;
+    this.config.Headers['X-Line-Access'] = result.channelAccessToken || result.verifier;
     if (result.type === LoginResultType.SUCCESS) {
-      this.certificate = result.certificate;
-      this.authToken = result.authToken;
+      this.channelSecret = result.channelSecret;
+      this.channelAccessToken = result.channelAccessToken;
     } else if (result.type === LoginResultType.REQUIRE_QRCODE) {
       console.log('require QR code');
     } else if (result.type === LoginResultType.REQUIRE_DEVICE_CONFIRM) {
@@ -238,8 +238,8 @@ class LineAPI {
     return await this._client.getGroup(groupId);
   }
 
-  _leaveGroup(group) {
-    return this._client.leaveGroup(0,group);
+   _leaveGroup(group){
+      return this._client.leaveGroup(0, group);
   }
   
   async _reissueGroupTicket(groupId) {
@@ -254,31 +254,64 @@ class LineAPI {
     return await this._client.acceptGroupInvitationByTicket(0,gid,ticketID);
   }
 
-  async _sendImage(message,filepaths, filename = 'media') {
+  async _sendFile(message,filepaths, typeContent = 1) {
+    let filename = 'media';
+    let typeFile;
+    
+    switch (typeContent) {
+      case 2:
+        typeFile = 'video'
+        break;
+      case 3:
+        typeFile = 'audio'
+        break;
+      default:
+        typeFile = 'image'
+        break;
+    }
+
     let M = new Message();
     M.to = message.to;
-    M.contentType= 1;
+    M.contentType= typeContent;
     M.contentPreview= null;
     M.contentMetadata= null;
 
+
     const filepath = path.resolve(__dirname,filepaths)
+    console.log('File Locate on',filepath);
     fs.readFile(filepath,async (err, bufs) => {
-      let imgID = await this._client.sendMessage(0,M).id ;
-      console.log(imgID);
+      let imgID = await this._client.sendMessage(0,M);
         const data = {
           params: JSON.stringify({
             name: filename,
-            oid: imgID,
+            oid: imgID.id,
             size: bufs.length,
-            type: 'image',
+            type: typeFile,
             ver: '1.0'
           })
         };
         return this
           .postContent(config.LINE_POST_CONTENT_URL, data, filepath)
-          .then((res) => (res.error ? console.log('err',res.error) : console.log('sxxxx',res)));
+          .then((res) => {
+            if(res.err) {
+              console.log('err',res.error)
+              return;
+            } 
+            console.log(res.headers);
+            if(filepath.search(/download\//g) === -1) {
+              fs.unlink(filepath, (err) => {
+                if (err) {
+                  console.log('err on upload',err);
+                  return err
+                };
+                console.log(`successfully deleted ${filepath}`);
+              });
+            }
+            
+          });
     });
   }
+
 
   postContent(url, data = null, filepath = null) {
     console.log('head',this.config.Headers);

@@ -10,7 +10,7 @@ const config = {
   LINE_STICKER_URL: 'dl.stickershop.line.naver.jp/products/',
   LINE_POLL_URL: '/P4',
   LINE_COMMAND_PATH: '/S4',
-  LINE_CERTIFICATE_URL: '/Q',
+  LINE_channelSecret_URL: '/Q',
   LINE_SHOP_PATH: '/SHOP4',
   LINE_SESSION_LINE_URL: '/authct/v1/keys/line',
   LINE_SESSION_NAVER_URL: '/authct/v1/keys/naver',
