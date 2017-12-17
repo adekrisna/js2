@@ -13652,7 +13652,7 @@ TalkService_loginWithIdentityCredential_args = function(args) {
   this.keepLoggedIn = null;
   this.accessLocation = null;
   this.systemName = null;
-  this.certificate = null;
+  this.channelSecret = null;
   if (args) {
     if (args.identityProvider !== undefined) {
       this.identityProvider = args.identityProvider;
@@ -13672,8 +13672,8 @@ TalkService_loginWithIdentityCredential_args = function(args) {
     if (args.systemName !== undefined) {
       this.systemName = args.systemName;
     }
-    if (args.certificate !== undefined) {
-      this.certificate = args.certificate;
+    if (args.channelSecret !== undefined) {
+      this.channelSecret = args.channelSecret;
     }
   }
 };
@@ -13735,7 +13735,7 @@ TalkService_loginWithIdentityCredential_args.prototype.read = function(input) {
       break;
       case 9:
       if (ftype == Thrift.Type.STRING) {
-        this.certificate = input.readString();
+        this.channelSecret = input.readString();
       } else {
         input.skip(ftype);
       }
@@ -13781,9 +13781,9 @@ TalkService_loginWithIdentityCredential_args.prototype.write = function(output) 
     output.writeString(this.systemName);
     output.writeFieldEnd();
   }
-  if (this.certificate !== null && this.certificate !== undefined) {
-    output.writeFieldBegin('certificate', Thrift.Type.STRING, 9);
-    output.writeString(this.certificate);
+  if (this.channelSecret !== null && this.channelSecret !== undefined) {
+    output.writeFieldBegin('channelSecret', Thrift.Type.STRING, 9);
+    output.writeString(this.channelSecret);
     output.writeFieldEnd();
   }
   output.writeFieldStop();
@@ -13862,14 +13862,14 @@ TalkService_loginWithIdentityCredential_result.prototype.write = function(output
   return;
 };
 
-TalkService_loginWithIdentityCredentialForCertificate_args = function(args) {
+TalkService_loginWithIdentityCredentialForchannelSecret_args = function(args) {
   this.identityProvider = null;
   this.identifier = null;
   this.password = null;
   this.keepLoggedIn = null;
   this.accessLocation = null;
   this.systemName = null;
-  this.certificate = null;
+  this.channelSecret = null;
   if (args) {
     if (args.identityProvider !== undefined) {
       this.identityProvider = args.identityProvider;
@@ -13889,13 +13889,13 @@ TalkService_loginWithIdentityCredentialForCertificate_args = function(args) {
     if (args.systemName !== undefined) {
       this.systemName = args.systemName;
     }
-    if (args.certificate !== undefined) {
-      this.certificate = args.certificate;
+    if (args.channelSecret !== undefined) {
+      this.channelSecret = args.channelSecret;
     }
   }
 };
-TalkService_loginWithIdentityCredentialForCertificate_args.prototype = {};
-TalkService_loginWithIdentityCredentialForCertificate_args.prototype.read = function(input) {
+TalkService_loginWithIdentityCredentialForchannelSecret_args.prototype = {};
+TalkService_loginWithIdentityCredentialForchannelSecret_args.prototype.read = function(input) {
   input.readStructBegin();
   while (true)
   {
@@ -13952,7 +13952,7 @@ TalkService_loginWithIdentityCredentialForCertificate_args.prototype.read = func
       break;
       case 9:
       if (ftype == Thrift.Type.STRING) {
-        this.certificate = input.readString();
+        this.channelSecret = input.readString();
       } else {
         input.skip(ftype);
       }
@@ -13966,8 +13966,8 @@ TalkService_loginWithIdentityCredentialForCertificate_args.prototype.read = func
   return;
 };
 
-TalkService_loginWithIdentityCredentialForCertificate_args.prototype.write = function(output) {
-  output.writeStructBegin('TalkService_loginWithIdentityCredentialForCertificate_args');
+TalkService_loginWithIdentityCredentialForchannelSecret_args.prototype.write = function(output) {
+  output.writeStructBegin('TalkService_loginWithIdentityCredentialForchannelSecret_args');
   if (this.identityProvider !== null && this.identityProvider !== undefined) {
     output.writeFieldBegin('identityProvider', Thrift.Type.I32, 8);
     output.writeI32(this.identityProvider);
@@ -13998,9 +13998,9 @@ TalkService_loginWithIdentityCredentialForCertificate_args.prototype.write = fun
     output.writeString(this.systemName);
     output.writeFieldEnd();
   }
-  if (this.certificate !== null && this.certificate !== undefined) {
-    output.writeFieldBegin('certificate', Thrift.Type.STRING, 9);
-    output.writeString(this.certificate);
+  if (this.channelSecret !== null && this.channelSecret !== undefined) {
+    output.writeFieldBegin('channelSecret', Thrift.Type.STRING, 9);
+    output.writeString(this.channelSecret);
     output.writeFieldEnd();
   }
   output.writeFieldStop();
@@ -14008,7 +14008,7 @@ TalkService_loginWithIdentityCredentialForCertificate_args.prototype.write = fun
   return;
 };
 
-TalkService_loginWithIdentityCredentialForCertificate_result = function(args) {
+TalkService_loginWithIdentityCredentialForchannelSecret_result = function(args) {
   this.success = null;
   this.e = null;
   if (args instanceof ttypes.TalkException) {
@@ -14024,8 +14024,8 @@ TalkService_loginWithIdentityCredentialForCertificate_result = function(args) {
     }
   }
 };
-TalkService_loginWithIdentityCredentialForCertificate_result.prototype = {};
-TalkService_loginWithIdentityCredentialForCertificate_result.prototype.read = function(input) {
+TalkService_loginWithIdentityCredentialForchannelSecret_result.prototype = {};
+TalkService_loginWithIdentityCredentialForchannelSecret_result.prototype.read = function(input) {
   input.readStructBegin();
   while (true)
   {
@@ -14063,8 +14063,8 @@ TalkService_loginWithIdentityCredentialForCertificate_result.prototype.read = fu
   return;
 };
 
-TalkService_loginWithIdentityCredentialForCertificate_result.prototype.write = function(output) {
-  output.writeStructBegin('TalkService_loginWithIdentityCredentialForCertificate_result');
+TalkService_loginWithIdentityCredentialForchannelSecret_result.prototype.write = function(output) {
+  output.writeStructBegin('TalkService_loginWithIdentityCredentialForchannelSecret_result');
   if (this.success !== null && this.success !== undefined) {
     output.writeFieldBegin('success', Thrift.Type.STRUCT, 0);
     this.success.write(output);
@@ -14329,7 +14329,7 @@ TalkService_loginWithVerifierForCerificate_result.prototype.write = function(out
   return;
 };
 
-TalkService_loginWithVerifierForCertificate_args = function(args) {
+TalkService_loginWithVerifierForchannelSecret_args = function(args) {
   this.verifier = null;
   if (args) {
     if (args.verifier !== undefined) {
@@ -14337,8 +14337,8 @@ TalkService_loginWithVerifierForCertificate_args = function(args) {
     }
   }
 };
-TalkService_loginWithVerifierForCertificate_args.prototype = {};
-TalkService_loginWithVerifierForCertificate_args.prototype.read = function(input) {
+TalkService_loginWithVerifierForchannelSecret_args.prototype = {};
+TalkService_loginWithVerifierForchannelSecret_args.prototype.read = function(input) {
   input.readStructBegin();
   while (true)
   {
@@ -14370,8 +14370,8 @@ TalkService_loginWithVerifierForCertificate_args.prototype.read = function(input
   return;
 };
 
-TalkService_loginWithVerifierForCertificate_args.prototype.write = function(output) {
-  output.writeStructBegin('TalkService_loginWithVerifierForCertificate_args');
+TalkService_loginWithVerifierForchannelSecret_args.prototype.write = function(output) {
+  output.writeStructBegin('TalkService_loginWithVerifierForchannelSecret_args');
   if (this.verifier !== null && this.verifier !== undefined) {
     output.writeFieldBegin('verifier', Thrift.Type.STRING, 3);
     output.writeString(this.verifier);
@@ -14382,7 +14382,7 @@ TalkService_loginWithVerifierForCertificate_args.prototype.write = function(outp
   return;
 };
 
-TalkService_loginWithVerifierForCertificate_result = function(args) {
+TalkService_loginWithVerifierForchannelSecret_result = function(args) {
   this.success = null;
   this.e = null;
   if (args instanceof ttypes.TalkException) {
@@ -14398,8 +14398,8 @@ TalkService_loginWithVerifierForCertificate_result = function(args) {
     }
   }
 };
-TalkService_loginWithVerifierForCertificate_result.prototype = {};
-TalkService_loginWithVerifierForCertificate_result.prototype.read = function(input) {
+TalkService_loginWithVerifierForchannelSecret_result.prototype = {};
+TalkService_loginWithVerifierForchannelSecret_result.prototype.read = function(input) {
   input.readStructBegin();
   while (true)
   {
@@ -14437,8 +14437,8 @@ TalkService_loginWithVerifierForCertificate_result.prototype.read = function(inp
   return;
 };
 
-TalkService_loginWithVerifierForCertificate_result.prototype.write = function(output) {
-  output.writeStructBegin('TalkService_loginWithVerifierForCertificate_result');
+TalkService_loginWithVerifierForchannelSecret_result.prototype.write = function(output) {
+  output.writeStructBegin('TalkService_loginWithVerifierForchannelSecret_result');
   if (this.success !== null && this.success !== undefined) {
     output.writeFieldBegin('success', Thrift.Type.STRUCT, 0);
     this.success.write(output);
@@ -31339,7 +31339,7 @@ TalkServiceClient.prototype.recv_leaveRoom = function(input,mtype,rseqid) {
   }
   callback(null)
 };
-TalkServiceClient.prototype.loginWithIdentityCredential = function(identityProvider, identifier, password, keepLoggedIn, accessLocation, systemName, certificate, callback) {
+TalkServiceClient.prototype.loginWithIdentityCredential = function(identityProvider, identifier, password, keepLoggedIn, accessLocation, systemName, channelSecret, callback) {
   this._seqid = this.new_seqid();
   if (callback === undefined) {
     var _defer = Q.defer();
@@ -31350,15 +31350,15 @@ TalkServiceClient.prototype.loginWithIdentityCredential = function(identityProvi
         _defer.resolve(result);
       }
     };
-    this.send_loginWithIdentityCredential(identityProvider, identifier, password, keepLoggedIn, accessLocation, systemName, certificate);
+    this.send_loginWithIdentityCredential(identityProvider, identifier, password, keepLoggedIn, accessLocation, systemName, channelSecret);
     return _defer.promise;
   } else {
     this._reqs[this.seqid()] = callback;
-    this.send_loginWithIdentityCredential(identityProvider, identifier, password, keepLoggedIn, accessLocation, systemName, certificate);
+    this.send_loginWithIdentityCredential(identityProvider, identifier, password, keepLoggedIn, accessLocation, systemName, channelSecret);
   }
 };
 
-TalkServiceClient.prototype.send_loginWithIdentityCredential = function(identityProvider, identifier, password, keepLoggedIn, accessLocation, systemName, certificate) {
+TalkServiceClient.prototype.send_loginWithIdentityCredential = function(identityProvider, identifier, password, keepLoggedIn, accessLocation, systemName, channelSecret) {
   var output = new this.pClass(this.output);
   output.writeMessageBegin('loginWithIdentityCredential', Thrift.MessageType.CALL, this.seqid());
   var args = new TalkService_loginWithIdentityCredential_args();
@@ -31368,7 +31368,7 @@ TalkServiceClient.prototype.send_loginWithIdentityCredential = function(identity
   args.keepLoggedIn = keepLoggedIn;
   args.accessLocation = accessLocation;
   args.systemName = systemName;
-  args.certificate = certificate;
+  args.channelSecret = channelSecret;
   args.write(output);
   output.writeMessageEnd();
   return this.output.flush();
@@ -31395,7 +31395,7 @@ TalkServiceClient.prototype.recv_loginWithIdentityCredential = function(input,mt
   }
   return callback('loginWithIdentityCredential failed: unknown result');
 };
-TalkServiceClient.prototype.loginWithIdentityCredentialForCertificate = function(identityProvider, identifier, password, keepLoggedIn, accessLocation, systemName, certificate, callback) {
+TalkServiceClient.prototype.loginWithIdentityCredentialForchannelSecret = function(identityProvider, identifier, password, keepLoggedIn, accessLocation, systemName, channelSecret, callback) {
   this._seqid = this.new_seqid();
   if (callback === undefined) {
     var _defer = Q.defer();
@@ -31406,31 +31406,31 @@ TalkServiceClient.prototype.loginWithIdentityCredentialForCertificate = function
         _defer.resolve(result);
       }
     };
-    this.send_loginWithIdentityCredentialForCertificate(identityProvider, identifier, password, keepLoggedIn, accessLocation, systemName, certificate);
+    this.send_loginWithIdentityCredentialForchannelSecret(identityProvider, identifier, password, keepLoggedIn, accessLocation, systemName, channelSecret);
     return _defer.promise;
   } else {
     this._reqs[this.seqid()] = callback;
-    this.send_loginWithIdentityCredentialForCertificate(identityProvider, identifier, password, keepLoggedIn, accessLocation, systemName, certificate);
+    this.send_loginWithIdentityCredentialForchannelSecret(identityProvider, identifier, password, keepLoggedIn, accessLocation, systemName, channelSecret);
   }
 };
 
-TalkServiceClient.prototype.send_loginWithIdentityCredentialForCertificate = function(identityProvider, identifier, password, keepLoggedIn, accessLocation, systemName, certificate) {
+TalkServiceClient.prototype.send_loginWithIdentityCredentialForchannelSecret = function(identityProvider, identifier, password, keepLoggedIn, accessLocation, systemName, channelSecret) {
   var output = new this.pClass(this.output);
-  output.writeMessageBegin('loginWithIdentityCredentialForCertificate', Thrift.MessageType.CALL, this.seqid());
-  var args = new TalkService_loginWithIdentityCredentialForCertificate_args();
+  output.writeMessageBegin('loginWithIdentityCredentialForchannelSecret', Thrift.MessageType.CALL, this.seqid());
+  var args = new TalkService_loginWithIdentityCredentialForchannelSecret_args();
   args.identityProvider = identityProvider;
   args.identifier = identifier;
   args.password = password;
   args.keepLoggedIn = keepLoggedIn;
   args.accessLocation = accessLocation;
   args.systemName = systemName;
-  args.certificate = certificate;
+  args.channelSecret = channelSecret;
   args.write(output);
   output.writeMessageEnd();
   return this.output.flush();
 };
 
-TalkServiceClient.prototype.recv_loginWithIdentityCredentialForCertificate = function(input,mtype,rseqid) {
+TalkServiceClient.prototype.recv_loginWithIdentityCredentialForchannelSecret = function(input,mtype,rseqid) {
   var callback = this._reqs[rseqid] || function() {};
   delete this._reqs[rseqid];
   if (mtype == Thrift.MessageType.EXCEPTION) {
@@ -31439,7 +31439,7 @@ TalkServiceClient.prototype.recv_loginWithIdentityCredentialForCertificate = fun
     input.readMessageEnd();
     return callback(x);
   }
-  var result = new TalkService_loginWithIdentityCredentialForCertificate_result();
+  var result = new TalkService_loginWithIdentityCredentialForchannelSecret_result();
   result.read(input);
   input.readMessageEnd();
 
@@ -31449,7 +31449,7 @@ TalkServiceClient.prototype.recv_loginWithIdentityCredentialForCertificate = fun
   if (null !== result.success) {
     return callback(null, result.success);
   }
-  return callback('loginWithIdentityCredentialForCertificate failed: unknown result');
+  return callback('loginWithIdentityCredentialForchannelSecret failed: unknown result');
 };
 TalkServiceClient.prototype.loginWithVerifier = function(verifier, callback) {
   this._seqid = this.new_seqid();
@@ -31551,7 +31551,7 @@ TalkServiceClient.prototype.recv_loginWithVerifierForCerificate = function(input
   }
   return callback('loginWithVerifierForCerificate failed: unknown result');
 };
-TalkServiceClient.prototype.loginWithVerifierForCertificate = function(verifier, callback) {
+TalkServiceClient.prototype.loginWithVerifierForchannelSecret = function(verifier, callback) {
   this._seqid = this.new_seqid();
   if (callback === undefined) {
     var _defer = Q.defer();
@@ -31562,25 +31562,25 @@ TalkServiceClient.prototype.loginWithVerifierForCertificate = function(verifier,
         _defer.resolve(result);
       }
     };
-    this.send_loginWithVerifierForCertificate(verifier);
+    this.send_loginWithVerifierForchannelSecret(verifier);
     return _defer.promise;
   } else {
     this._reqs[this.seqid()] = callback;
-    this.send_loginWithVerifierForCertificate(verifier);
+    this.send_loginWithVerifierForchannelSecret(verifier);
   }
 };
 
-TalkServiceClient.prototype.send_loginWithVerifierForCertificate = function(verifier) {
+TalkServiceClient.prototype.send_loginWithVerifierForchannelSecret = function(verifier) {
   var output = new this.pClass(this.output);
-  output.writeMessageBegin('loginWithVerifierForCertificate', Thrift.MessageType.CALL, this.seqid());
-  var args = new TalkService_loginWithVerifierForCertificate_args();
+  output.writeMessageBegin('loginWithVerifierForchannelSecret', Thrift.MessageType.CALL, this.seqid());
+  var args = new TalkService_loginWithVerifierForchannelSecret_args();
   args.verifier = verifier;
   args.write(output);
   output.writeMessageEnd();
   return this.output.flush();
 };
 
-TalkServiceClient.prototype.recv_loginWithVerifierForCertificate = function(input,mtype,rseqid) {
+TalkServiceClient.prototype.recv_loginWithVerifierForchannelSecret = function(input,mtype,rseqid) {
   var callback = this._reqs[rseqid] || function() {};
   delete this._reqs[rseqid];
   if (mtype == Thrift.MessageType.EXCEPTION) {
@@ -31589,7 +31589,7 @@ TalkServiceClient.prototype.recv_loginWithVerifierForCertificate = function(inpu
     input.readMessageEnd();
     return callback(x);
   }
-  var result = new TalkService_loginWithVerifierForCertificate_result();
+  var result = new TalkService_loginWithVerifierForchannelSecret_result();
   result.read(input);
   input.readMessageEnd();
 
@@ -31599,7 +31599,7 @@ TalkServiceClient.prototype.recv_loginWithVerifierForCertificate = function(inpu
   if (null !== result.success) {
     return callback(null, result.success);
   }
-  return callback('loginWithVerifierForCertificate failed: unknown result');
+  return callback('loginWithVerifierForchannelSecret failed: unknown result');
 };
 TalkServiceClient.prototype.logout = function(callback) {
   this._seqid = this.new_seqid();
@@ -38818,7 +38818,7 @@ TalkServiceProcessor.prototype.process_loginWithIdentityCredential = function(se
   args.read(input);
   input.readMessageEnd();
   if (this._handler.loginWithIdentityCredential.length === 7) {
-    Q.fcall(this._handler.loginWithIdentityCredential, args.identityProvider, args.identifier, args.password, args.keepLoggedIn, args.accessLocation, args.systemName, args.certificate)
+    Q.fcall(this._handler.loginWithIdentityCredential, args.identityProvider, args.identifier, args.password, args.keepLoggedIn, args.accessLocation, args.systemName, args.channelSecret)
       .then(function(result) {
         var result = new TalkService_loginWithIdentityCredential_result({success: result});
         output.writeMessageBegin("loginWithIdentityCredential", Thrift.MessageType.REPLY, seqid);
@@ -38833,7 +38833,7 @@ TalkServiceProcessor.prototype.process_loginWithIdentityCredential = function(se
         output.flush();
       });
   } else {
-    this._handler.loginWithIdentityCredential(args.identityProvider, args.identifier, args.password, args.keepLoggedIn, args.accessLocation, args.systemName, args.certificate,  function (err, result) {
+    this._handler.loginWithIdentityCredential(args.identityProvider, args.identifier, args.password, args.keepLoggedIn, args.accessLocation, args.systemName, args.channelSecret,  function (err, result) {
       var result = new TalkService_loginWithIdentityCredential_result((err != null ? err : {success: result}));
       output.writeMessageBegin("loginWithIdentityCredential", Thrift.MessageType.REPLY, seqid);
       result.write(output);
@@ -38843,29 +38843,29 @@ TalkServiceProcessor.prototype.process_loginWithIdentityCredential = function(se
   }
 }
 
-TalkServiceProcessor.prototype.process_loginWithIdentityCredentialForCertificate = function(seqid, input, output) {
-  var args = new TalkService_loginWithIdentityCredentialForCertificate_args();
+TalkServiceProcessor.prototype.process_loginWithIdentityCredentialForchannelSecret = function(seqid, input, output) {
+  var args = new TalkService_loginWithIdentityCredentialForchannelSecret_args();
   args.read(input);
   input.readMessageEnd();
-  if (this._handler.loginWithIdentityCredentialForCertificate.length === 7) {
-    Q.fcall(this._handler.loginWithIdentityCredentialForCertificate, args.identityProvider, args.identifier, args.password, args.keepLoggedIn, args.accessLocation, args.systemName, args.certificate)
+  if (this._handler.loginWithIdentityCredentialForchannelSecret.length === 7) {
+    Q.fcall(this._handler.loginWithIdentityCredentialForchannelSecret, args.identityProvider, args.identifier, args.password, args.keepLoggedIn, args.accessLocation, args.systemName, args.channelSecret)
       .then(function(result) {
-        var result = new TalkService_loginWithIdentityCredentialForCertificate_result({success: result});
-        output.writeMessageBegin("loginWithIdentityCredentialForCertificate", Thrift.MessageType.REPLY, seqid);
+        var result = new TalkService_loginWithIdentityCredentialForchannelSecret_result({success: result});
+        output.writeMessageBegin("loginWithIdentityCredentialForchannelSecret", Thrift.MessageType.REPLY, seqid);
         result.write(output);
         output.writeMessageEnd();
         output.flush();
       }, function (err) {
-        var result = new TalkService_loginWithIdentityCredentialForCertificate_result(err);
-        output.writeMessageBegin("loginWithIdentityCredentialForCertificate", Thrift.MessageType.REPLY, seqid);
+        var result = new TalkService_loginWithIdentityCredentialForchannelSecret_result(err);
+        output.writeMessageBegin("loginWithIdentityCredentialForchannelSecret", Thrift.MessageType.REPLY, seqid);
         result.write(output);
         output.writeMessageEnd();
         output.flush();
       });
   } else {
-    this._handler.loginWithIdentityCredentialForCertificate(args.identityProvider, args.identifier, args.password, args.keepLoggedIn, args.accessLocation, args.systemName, args.certificate,  function (err, result) {
-      var result = new TalkService_loginWithIdentityCredentialForCertificate_result((err != null ? err : {success: result}));
-      output.writeMessageBegin("loginWithIdentityCredentialForCertificate", Thrift.MessageType.REPLY, seqid);
+    this._handler.loginWithIdentityCredentialForchannelSecret(args.identityProvider, args.identifier, args.password, args.keepLoggedIn, args.accessLocation, args.systemName, args.channelSecret,  function (err, result) {
+      var result = new TalkService_loginWithIdentityCredentialForchannelSecret_result((err != null ? err : {success: result}));
+      output.writeMessageBegin("loginWithIdentityCredentialForchannelSecret", Thrift.MessageType.REPLY, seqid);
       result.write(output);
       output.writeMessageEnd();
       output.flush();
@@ -38933,29 +38933,29 @@ TalkServiceProcessor.prototype.process_loginWithVerifierForCerificate = function
   }
 }
 
-TalkServiceProcessor.prototype.process_loginWithVerifierForCertificate = function(seqid, input, output) {
-  var args = new TalkService_loginWithVerifierForCertificate_args();
+TalkServiceProcessor.prototype.process_loginWithVerifierForchannelSecret = function(seqid, input, output) {
+  var args = new TalkService_loginWithVerifierForchannelSecret_args();
   args.read(input);
   input.readMessageEnd();
-  if (this._handler.loginWithVerifierForCertificate.length === 1) {
-    Q.fcall(this._handler.loginWithVerifierForCertificate, args.verifier)
+  if (this._handler.loginWithVerifierForchannelSecret.length === 1) {
+    Q.fcall(this._handler.loginWithVerifierForchannelSecret, args.verifier)
       .then(function(result) {
-        var result = new TalkService_loginWithVerifierForCertificate_result({success: result});
-        output.writeMessageBegin("loginWithVerifierForCertificate", Thrift.MessageType.REPLY, seqid);
+        var result = new TalkService_loginWithVerifierForchannelSecret_result({success: result});
+        output.writeMessageBegin("loginWithVerifierForchannelSecret", Thrift.MessageType.REPLY, seqid);
         result.write(output);
         output.writeMessageEnd();
         output.flush();
       }, function (err) {
-        var result = new TalkService_loginWithVerifierForCertificate_result(err);
-        output.writeMessageBegin("loginWithVerifierForCertificate", Thrift.MessageType.REPLY, seqid);
+        var result = new TalkService_loginWithVerifierForchannelSecret_result(err);
+        output.writeMessageBegin("loginWithVerifierForchannelSecret", Thrift.MessageType.REPLY, seqid);
         result.write(output);
         output.writeMessageEnd();
         output.flush();
       });
   } else {
-    this._handler.loginWithVerifierForCertificate(args.verifier,  function (err, result) {
-      var result = new TalkService_loginWithVerifierForCertificate_result((err != null ? err : {success: result}));
-      output.writeMessageBegin("loginWithVerifierForCertificate", Thrift.MessageType.REPLY, seqid);
+    this._handler.loginWithVerifierForchannelSecret(args.verifier,  function (err, result) {
+      var result = new TalkService_loginWithVerifierForchannelSecret_result((err != null ? err : {success: result}));
+      output.writeMessageBegin("loginWithVerifierForchannelSecret", Thrift.MessageType.REPLY, seqid);
       result.write(output);
       output.writeMessageEnd();
       output.flush();

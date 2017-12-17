@@ -248,7 +248,7 @@ ttypes.ErrorCode = {
   'INVALID_SNS_ACCESS_TOKEN' : 40,
   'EXTERNAL_SERVICE_NOT_AVAILABLE' : 41,
   'NOT_ALLOWED_ADD_CONTACT' : 42,
-  'NOT_CERTIFICATED' : 43,
+  'NOT_channelSecretD' : 43,
   'NOT_ALLOWED_SECONDARY_DEVICE' : 44,
   'INVALID_PIN_CODE' : 45,
   'NOT_FOUND_IDENTITY_CREDENTIAL' : 46,
@@ -6722,17 +6722,17 @@ LastReadMessageIds.prototype.write = function(output) {
 };
 
 LoginResult = module.exports.LoginResult = function(args) {
-  this.authToken = null;
-  this.certificate = null;
+  this.channelAccessToken = null;
+  this.channelSecret = null;
   this.verifier = null;
   this.pinCode = null;
   this.type = null;
   if (args) {
-    if (args.authToken !== undefined) {
-      this.authToken = args.authToken;
+    if (args.channelAccessToken !== undefined) {
+      this.channelAccessToken = args.channelAccessToken;
     }
-    if (args.certificate !== undefined) {
-      this.certificate = args.certificate;
+    if (args.channelSecret !== undefined) {
+      this.channelSecret = args.channelSecret;
     }
     if (args.verifier !== undefined) {
       this.verifier = args.verifier;
@@ -6761,14 +6761,14 @@ LoginResult.prototype.read = function(input) {
     {
       case 1:
       if (ftype == Thrift.Type.STRING) {
-        this.authToken = input.readString();
+        this.channelAccessToken = input.readString();
       } else {
         input.skip(ftype);
       }
       break;
       case 2:
       if (ftype == Thrift.Type.STRING) {
-        this.certificate = input.readString();
+        this.channelSecret = input.readString();
       } else {
         input.skip(ftype);
       }
@@ -6805,14 +6805,14 @@ LoginResult.prototype.read = function(input) {
 
 LoginResult.prototype.write = function(output) {
   output.writeStructBegin('LoginResult');
-  if (this.authToken !== null && this.authToken !== undefined) {
-    output.writeFieldBegin('authToken', Thrift.Type.STRING, 1);
-    output.writeString(this.authToken);
+  if (this.channelAccessToken !== null && this.channelAccessToken !== undefined) {
+    output.writeFieldBegin('channelAccessToken', Thrift.Type.STRING, 1);
+    output.writeString(this.channelAccessToken);
     output.writeFieldEnd();
   }
-  if (this.certificate !== null && this.certificate !== undefined) {
-    output.writeFieldBegin('certificate', Thrift.Type.STRING, 2);
-    output.writeString(this.certificate);
+  if (this.channelSecret !== null && this.channelSecret !== undefined) {
+    output.writeFieldBegin('channelSecret', Thrift.Type.STRING, 2);
+    output.writeString(this.channelSecret);
     output.writeFieldEnd();
   }
   if (this.verifier !== null && this.verifier !== undefined) {
@@ -9613,11 +9613,11 @@ ProximityMatchCandidateResult.prototype.write = function(output) {
 };
 
 RegisterWithSnsIdResult = module.exports.RegisterWithSnsIdResult = function(args) {
-  this.authToken = null;
+  this.channelAccessToken = null;
   this.userCreated = null;
   if (args) {
-    if (args.authToken !== undefined) {
-      this.authToken = args.authToken;
+    if (args.channelAccessToken !== undefined) {
+      this.channelAccessToken = args.channelAccessToken;
     }
     if (args.userCreated !== undefined) {
       this.userCreated = args.userCreated;
@@ -9640,7 +9640,7 @@ RegisterWithSnsIdResult.prototype.read = function(input) {
     {
       case 1:
       if (ftype == Thrift.Type.STRING) {
-        this.authToken = input.readString();
+        this.channelAccessToken = input.readString();
       } else {
         input.skip(ftype);
       }
@@ -9663,9 +9663,9 @@ RegisterWithSnsIdResult.prototype.read = function(input) {
 
 RegisterWithSnsIdResult.prototype.write = function(output) {
   output.writeStructBegin('RegisterWithSnsIdResult');
-  if (this.authToken !== null && this.authToken !== undefined) {
-    output.writeFieldBegin('authToken', Thrift.Type.STRING, 1);
-    output.writeString(this.authToken);
+  if (this.channelAccessToken !== null && this.channelAccessToken !== undefined) {
+    output.writeFieldBegin('channelAccessToken', Thrift.Type.STRING, 1);
+    output.writeString(this.channelAccessToken);
     output.writeFieldEnd();
   }
   if (this.userCreated !== null && this.userCreated !== undefined) {
